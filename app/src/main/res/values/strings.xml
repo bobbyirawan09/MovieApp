@@ -2,4 +2,7 @@
     <string name="app_name">MovieApp</string>
     <string name="review_label">Review</string>
     <string name="description_label">Description</string>
+    <string name="now_playing_label">Now Playing</string>
+    <string name="popular_movie_label">Popular Movie</string>
+    <string name="top_rated_label">Top Rated</string>
 </resources>

@@ -22,7 +22,7 @@ android {
 
         buildConfigField "String", "API_KEY", localProps['apiKey']
         buildConfigField "String", "BEARER_TOKEN", localProps['bearerToken']
-        buildConfigField "String", "BASE_URL", "'https://api.themoviedb.org/3/'"
+        buildConfigField 'String', 'BASE_URL', '"https://api.themoviedb.org/3/"'
     }
 
     buildTypes {

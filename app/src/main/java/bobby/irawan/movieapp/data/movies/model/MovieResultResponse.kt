@@ -1,8 +1,11 @@
-package bobby.irawan.movieapp.data.movies.model.toprated
+package bobby.irawan.movieapp.data.movies.model
 
 import com.google.gson.annotations.SerializedName
 
-data class TopRatedResultResponse(
+/**
+ * Created by bobbyirawan09 on 13/08/20.
+ */
+data class MovieResultResponse(
     val adult: Boolean? = false,
     @SerializedName("backdrop_path")
     val backdropPath: String? = "",

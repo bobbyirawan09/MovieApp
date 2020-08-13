@@ -1,9 +1,6 @@
 package bobby.irawan.movieapp.data.movies
 
-import bobby.irawan.movieapp.data.movies.model.nowplaying.NowPlayingResponse
-import bobby.irawan.movieapp.data.movies.model.popular.PopularResponse
-import bobby.irawan.movieapp.data.movies.model.review.ReviewResponse
-import bobby.irawan.movieapp.data.movies.model.toprated.TopRatedResponse
+import bobby.irawan.movieapp.data.movies.model.MovieResponse
 import bobby.irawan.movieapp.utils.Constants.PATH_MOVIE
 import bobby.irawan.movieapp.utils.Constants.PATH_MOVIE_ID
 import bobby.irawan.movieapp.utils.Constants.PATH_NOW_PLAYING
@@ -19,16 +16,16 @@ import retrofit2.http.Path
  */
 interface MoviesServiceApi {
     @GET(PATH_MOVIE + PATH_NOW_PLAYING)
-    suspend fun getNowPlayingMovies(): Response<NowPlayingResponse>
+    suspend fun getNowPlayingMovies(): Response<MovieResponse>
 
     @GET(PATH_MOVIE + PATH_POPULAR)
-    suspend fun getPopularMovies(): Response<PopularResponse>
+    suspend fun getPopularMovies(): Response<MovieResponse>
 
     @GET(PATH_MOVIE + "{" + PATH_MOVIE_ID + "}" + PATH_REVIEW)
     suspend fun getMovieReview(
         @Path(PATH_MOVIE_ID) movieId: String
-    ): Response<ReviewResponse>
+    ): Response<MovieResponse>
 
     @GET(PATH_MOVIE + PATH_TOP_RATED)
-    suspend fun getTopRatedMovies(): Response<TopRatedResponse>
+    suspend fun getTopRatedMovies(): Response<MovieResponse>
 }
