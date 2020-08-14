@@ -1,8 +1,12 @@
 package bobby.irawan.movieapp.utils
 
+import android.app.Activity
+import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import bobby.irawan.movieapp.AppController
 import bobby.irawan.movieapp.R
 import bobby.irawan.movieapp.data.movies.model.MovieResponse
 import bobby.irawan.movieapp.presentation.model.MovieItem
@@ -27,25 +31,30 @@ fun Fragment.showToast(message: String) {
     Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 }
 
+fun Activity.showToast(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+}
+
 fun Int?.orZero() = this ?: 0
 
 fun Double?.orZero() = this ?: 0.0
 
-suspend fun callApi(action: suspend () -> Response<MovieResponse>): Result =
-    try {
-        val response = action.invoke()
-        Success(data = response.body())
-    } catch (e: Exception) {
-        Error(message = e.localizedMessage)
-    }
+fun String?.orNoInfoString(): String =
+    if (this.isNullOrEmpty()) AppController.getInstance()
+        .getString(R.string.no_available_information) else this
 
-suspend fun mapToPresentation(action: suspend () -> Result): Result {
-    val response = action.invoke()
-    return when (response) {
-        is Success<*> -> {
-            val movieResponse = response.data as MovieResponse
-            Success(data = MovieItem.from(movieResponse))
-        }
-        is Error -> Error(response.message)
-    }
+
+fun View.setVisible() {
+    this.visibility = View.VISIBLE
+}
+
+fun View.setGone() {
+    this.visibility = View.GONE
+}
+
+fun TextView.isShowEmptyInfo(data: List<*>?, action: () -> Unit = {}) = if (data.isNullOrEmpty()) {
+    this.setVisible()
+    action()
+} else {
+    this.setGone()
 }

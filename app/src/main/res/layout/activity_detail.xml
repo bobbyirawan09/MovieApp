@@ -54,7 +54,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".presentation.detail.MovieDetailActivity">
+            tools:context=".presentation.detail.DetailActivity">
 
             <TextView
                 android:id="@+id/text_view_title"

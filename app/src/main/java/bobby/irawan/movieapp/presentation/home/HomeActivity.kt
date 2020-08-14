@@ -1,9 +1,13 @@
 package bobby.irawan.movieapp.presentation.home
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import bobby.irawan.movieapp.R
 import bobby.irawan.movieapp.databinding.ActivityHomeBinding
+import bobby.irawan.movieapp.presentation.favorite.FavoriteActivity
 import bobby.irawan.movieapp.presentation.nowplaying.NowPlayingFragment
 import bobby.irawan.movieapp.presentation.popular.PopularFragment
 import bobby.irawan.movieapp.presentation.toprated.TopRatedFragment
@@ -40,5 +44,19 @@ class HomeActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(layoutId, fragment)
             .commit()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.home_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.favourite -> {
+                FavoriteActivity.startActivity(this)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

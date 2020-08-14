@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
 import bobby.irawan.movieapp.databinding.FragmentTopRatedBinding
-import bobby.irawan.movieapp.presentation.detail.MovieDetailActivity
+import bobby.irawan.movieapp.presentation.detail.DetailActivity
 import bobby.irawan.movieapp.presentation.model.MovieItem
 import bobby.irawan.movieapp.utils.showToast
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -52,7 +52,7 @@ class TopRatedFragment : Fragment(), TopRatedAdapter.ClickListener {
     }
 
     override fun onClickMovie(movieItem: MovieItem) {
-        MovieDetailActivity.startActivity(requireContext(), movieItem)
+        DetailActivity.startActivity(requireContext(), movieItem)
     }
 
 }

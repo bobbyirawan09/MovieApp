@@ -1,6 +1,7 @@
 package bobby.irawan.movieapp.di
 
-import bobby.irawan.movieapp.presentation.detail.MovieViewModel
+import bobby.irawan.movieapp.presentation.detail.DetailViewModel
+import bobby.irawan.movieapp.presentation.favorite.FavoriteViewModel
 import bobby.irawan.movieapp.presentation.nowplaying.NowPlayingViewModel
 import bobby.irawan.movieapp.presentation.popular.PopularViewModel
 import bobby.irawan.movieapp.presentation.toprated.TopRatedViewModel
@@ -25,6 +26,14 @@ val presentationModule = module {
     }
 
     viewModel {
-        MovieViewModel(get())
+        DetailViewModel(get())
+    }
+
+    viewModel {
+        FavoriteViewModel(get())
+    }
+
+    viewModel {
+        DetailViewModel(get())
     }
 }

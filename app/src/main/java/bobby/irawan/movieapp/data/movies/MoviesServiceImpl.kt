@@ -1,12 +1,12 @@
 package bobby.irawan.movieapp.data.movies
 
+import bobby.irawan.movieapp.data.callApi
 import bobby.irawan.movieapp.utils.Constants.Result
-import bobby.irawan.movieapp.utils.callApi
 
 /**
  * Created by bobbyirawan09 on 13/08/20.
  */
-class MoviesServiceImpl(private val api: MoviesServiceApi) : MoviesServiceContract {
+class MoviesServiceImpl(private val api: MoviesServiceApi) : MoviesService {
     override suspend fun getNowPlayingMovies(): Result {
         return callApi { api.getNowPlayingMovies() }
     }

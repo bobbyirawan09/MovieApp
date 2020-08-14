@@ -1,15 +1,18 @@
 package bobby.irawan.movieapp.di
 
+import androidx.room.Room
+import bobby.irawan.movieapp.AppDatabase
 import bobby.irawan.movieapp.BuildConfig.BASE_URL
 import bobby.irawan.movieapp.data.interceptor.HeaderInterceptor
 import bobby.irawan.movieapp.data.movies.MoviesServiceApi
-import bobby.irawan.movieapp.data.movies.MoviesServiceContract
+import bobby.irawan.movieapp.data.movies.MoviesService
 import bobby.irawan.movieapp.data.movies.MoviesServiceImpl
 import bobby.irawan.movieapp.utils.Constants.HEADER_INTERCEPTOR
 import bobby.irawan.movieapp.utils.Constants.LOGGING_INTERCEPTOR
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidApplication
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -21,14 +24,14 @@ import java.util.concurrent.TimeUnit
  */
 
 val dataModule = module {
-//    single {
-//        Room.databaseBuilder(androidApplication(), AppDatabase::class.java, "favourite_database")
-//            .build()
-//    }
-//
-//    single {
-//        get<AppDatabase>().favouriteDao()
-//    }
+    single {
+        Room.databaseBuilder(androidApplication(), AppDatabase::class.java, "favorite_database")
+            .build()
+    }
+
+    single {
+        get<AppDatabase>().favoriteDao()
+    }
 
     single {
         OkHttpClient.Builder()
@@ -56,7 +59,7 @@ val dataModule = module {
 
     single { get<Retrofit>().create(MoviesServiceApi::class.java) }
 
-    single<MoviesServiceContract> {
+    single<MoviesService> {
         MoviesServiceImpl(get())
     }
 }

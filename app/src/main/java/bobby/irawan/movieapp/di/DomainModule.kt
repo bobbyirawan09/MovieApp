@@ -10,6 +10,6 @@ import org.koin.dsl.module
 
 val domainModule = module {
     single<RepositoryContract> {
-        RepositoryImpl(get())
+        RepositoryImpl(get(), get())
     }
 }
