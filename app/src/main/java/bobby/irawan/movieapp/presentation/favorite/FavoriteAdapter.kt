@@ -55,7 +55,7 @@ class FavoriteAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         fun bind(favorite: Favorite) {
             with(binding) {
                 textViewTitle.text = favorite.title.orNoInfoString()
-                imageViewBanner.setGlideAttribute(favorite.imageUrl)
+                imageViewBanner.setGlideAttribute(favorite.posterUrl)
                 textViewReleaseDate.text = favorite.releaseDate.orNoInfoString()
                 textViewSynopsis.text = favorite.overview.orNoInfoString()
             }

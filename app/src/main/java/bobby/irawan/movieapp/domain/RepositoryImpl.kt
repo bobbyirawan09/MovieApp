@@ -4,8 +4,10 @@ import bobby.irawan.movieapp.data.favorite.FavoriteDao
 import bobby.irawan.movieapp.data.favorite.model.FavoriteEntity
 import bobby.irawan.movieapp.data.movies.MoviesService
 import bobby.irawan.movieapp.data.movies.model.MovieResponse
+import bobby.irawan.movieapp.data.movies.model.MovieReviewResponse
 import bobby.irawan.movieapp.presentation.model.Favorite
 import bobby.irawan.movieapp.presentation.model.MovieItem
+import bobby.irawan.movieapp.presentation.model.MovieReview
 import bobby.irawan.movieapp.utils.Constants.Result
 
 /**
@@ -25,9 +27,12 @@ class RepositoryImpl(private val service: MoviesService, private val dao: Favori
         }
     }
 
-    override suspend fun getMovieReview(movieId: String): Result {
+    override suspend fun getMovieReview(movieId: Int): Result {
         return service.getMovieReview(movieId).mapToPresentation { data ->
-            MovieItem.from(data as MovieResponse)
+            val response = data as MovieReviewResponse
+            response.results.map { reviews ->
+                MovieReview.from(reviews)
+            }
         }
     }
 

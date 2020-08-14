@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 interface RepositoryContract {
     suspend fun getNowPlayingMovies(): Result
     suspend fun getPopularMovies(): Result
-    suspend fun getMovieReview(movieId: String): Result
+    suspend fun getMovieReview(movieId: Int): Result
     suspend fun getTopRatedMovies(): Result
     suspend fun getFavorites(): Flow<Result>
     suspend fun getFavoriteByMovieId(movieId: Int): Result

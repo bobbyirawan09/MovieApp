@@ -28,12 +28,12 @@ class TopRatedFragment : Fragment(), TopRatedAdapter.ClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView()
+        setUpView()
         observeViewModel()
         viewModel.getTopRatedMovies()
     }
 
-    private fun initView() {
+    private fun setUpView() {
         binding?.recyclerViewTopRated?.adapter = adapter
     }
 
@@ -41,9 +41,7 @@ class TopRatedFragment : Fragment(), TopRatedAdapter.ClickListener {
         viewModel.movieItems.observe(viewLifecycleOwner) { movieItems ->
             adapter.setDataMovie(movieItems)
         }
-        viewModel.snackbarMessage().observe(viewLifecycleOwner) { message ->
-            showToast(message)
-        }
+        viewModel.snackbarMessage().observe(this, ::showToast)
     }
 
     override fun onDestroyView() {

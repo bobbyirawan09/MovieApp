@@ -9,6 +9,6 @@ import bobby.irawan.movieapp.utils.Constants.Result
 interface MoviesService {
     suspend fun getNowPlayingMovies(): Result
     suspend fun getPopularMovies(): Result
-    suspend fun getMovieReview(movieId: String): Result
+    suspend fun getMovieReview(movieId: Int): Result
     suspend fun getTopRatedMovies(): Result
 }

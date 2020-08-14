@@ -34,7 +34,7 @@ class NowPlayingAdapter(private val listener: ClickListener?): RecyclerView.Adap
     inner class ViewHolder(private val binding: ItemMovieInfoBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(movieItem: MovieItem) {
             with(binding) {
-                imageViewBanner.setGlideAttribute(movieItem.backdropUrl)
+                imageViewBanner.setGlideAttribute(movieItem.posterUrl)
                 textViewReleaseDate.text = movieItem.releaseDate
                 textViewTitle.text = movieItem.title
                 root.setOnClickListener { listener?.onClickMovie(movieItem) }

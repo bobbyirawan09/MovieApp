@@ -8,13 +8,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import bobby.irawan.movieapp.AppController
 import bobby.irawan.movieapp.R
-import bobby.irawan.movieapp.data.movies.model.MovieResponse
-import bobby.irawan.movieapp.presentation.model.MovieItem
-import bobby.irawan.movieapp.utils.Constants.Result
-import bobby.irawan.movieapp.utils.Constants.Result.Error
-import bobby.irawan.movieapp.utils.Constants.Result.Success
 import com.bumptech.glide.Glide
-import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Created by bobbyirawan09 on 13/08/20.
@@ -57,4 +53,14 @@ fun TextView.isShowEmptyInfo(data: List<*>?, action: () -> Unit = {}) = if (data
     action()
 } else {
     this.setGone()
+}
+
+fun String.asShowDate(): String {
+    return try {
+        val parser = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val formatter = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+        formatter.format(parser.parse(this) ?: Date())
+    } catch (e: Exception) {
+        ""
+    }
 }

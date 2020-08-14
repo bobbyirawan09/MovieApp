@@ -1,6 +1,8 @@
 package bobby.irawan.movieapp.domain
 
-import bobby.irawan.movieapp.utils.Constants
+import bobby.irawan.movieapp.BuildConfig.BASE_IMG_URL
+import bobby.irawan.movieapp.utils.Constants.DEFAULT_BACKDROP_URL
+import bobby.irawan.movieapp.utils.Constants.DEFAULT_POSTER_URL
 import bobby.irawan.movieapp.utils.Constants.Result
 import bobby.irawan.movieapp.utils.Constants.Result.Error
 import bobby.irawan.movieapp.utils.Constants.Result.Success
@@ -15,7 +17,11 @@ import kotlinx.coroutines.flow.flow
 fun <T> Result.mapToPresentation(converter: (Any?) -> T): Result {
     return when (this) {
         is Success<*> -> {
-            Success(converter(this.data))
+            try {
+                Success(converter(this.data))
+            } catch (e: java.lang.Exception) {
+                Error(e.localizedMessage)
+            }
         }
         is Error -> Error(this.message)
     }
@@ -38,3 +44,9 @@ suspend fun <T> handleFlowData(action: suspend () -> Flow<T>) = flow {
         emit(Error(e.localizedMessage))
     }
 }
+
+fun String.asPosterUrl() =
+    if (this.isEmpty()) DEFAULT_POSTER_URL else BASE_IMG_URL + "w185" + this
+
+fun String.asBackdropUrl() =
+    if (this.isEmpty()) DEFAULT_BACKDROP_URL else BASE_IMG_URL + "w780" + this

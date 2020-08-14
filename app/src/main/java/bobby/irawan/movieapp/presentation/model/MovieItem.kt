@@ -2,6 +2,9 @@ package bobby.irawan.movieapp.presentation.model
 
 import android.os.Parcelable
 import bobby.irawan.movieapp.data.movies.model.MovieResponse
+import bobby.irawan.movieapp.domain.asBackdropUrl
+import bobby.irawan.movieapp.domain.asPosterUrl
+import bobby.irawan.movieapp.utils.asShowDate
 import bobby.irawan.movieapp.utils.orZero
 import kotlinx.android.parcel.Parcelize
 
@@ -25,9 +28,9 @@ data class MovieItem(
                 MovieItem(
                     it.id.orZero(),
                     it.title.orEmpty(),
-                    it.posterPath.orEmpty(),
-                    it.backdropPath.orEmpty(),
-                    it.releaseDate.orEmpty(),
+                    it.posterPath.orEmpty().asPosterUrl(),
+                    it.backdropPath.orEmpty().asBackdropUrl(),
+                    it.releaseDate.orEmpty().asShowDate(),
                     it.overview.orEmpty(),
                     it.voteAverage.orZero(),
                     it.voteCount.orZero()

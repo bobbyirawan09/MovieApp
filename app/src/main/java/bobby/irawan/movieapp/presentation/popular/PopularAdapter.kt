@@ -37,6 +37,7 @@ class PopularAdapter(private val listener: ClickListener?) :
         fun bind(movieItem: MovieItem) {
             with(binding) {
                 imageViewBanner.setGlideAttribute(movieItem.backdropUrl)
+                textViewTitle.text = movieItem.title
                 root.setOnClickListener { listener?.onClickMovie(movieItem) }
             }
         }

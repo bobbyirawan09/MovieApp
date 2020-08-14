@@ -11,7 +11,7 @@ import retrofit2.Response
  * Created by bobbyirawan09 on 14/08/20.
  */
 
-suspend fun callApi(action: suspend () -> Response<MovieResponse>): Result =
+suspend fun <T> callApi(action: suspend () -> Response<T>): Result =
     try {
         val response = action.invoke()
         Result.Success(data = response.body())

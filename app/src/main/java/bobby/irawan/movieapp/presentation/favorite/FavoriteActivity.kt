@@ -26,12 +26,12 @@ class FavoriteActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        initView()
+        setUpView()
         obsereViewModel()
         viewModel.getAllFavourite()
     }
 
-    private fun initView() {
+    private fun setUpView() {
         binding.recyclerViewFavorite.addItemDecoration(
             DividerItemDecoration(
                 this,
@@ -42,12 +42,8 @@ class FavoriteActivity : AppCompatActivity() {
     }
 
     private fun obsereViewModel() {
-        viewModel.favouriteResult.observe(this) { favorites ->
-            onUpdateData(favorites)
-        }
-        viewModel.snackbarMessage().observe(this) { message ->
-            showToast(message)
-        }
+        viewModel.favouriteResult.observe(this,::onUpdateData)
+        viewModel.snackbarMessage().observe(this, ::showToast)
     }
 
     private fun onUpdateData(favourites: List<Favorite>) {

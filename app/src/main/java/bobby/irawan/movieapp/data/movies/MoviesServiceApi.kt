@@ -1,6 +1,7 @@
 package bobby.irawan.movieapp.data.movies
 
 import bobby.irawan.movieapp.data.movies.model.MovieResponse
+import bobby.irawan.movieapp.data.movies.model.MovieReviewResponse
 import bobby.irawan.movieapp.utils.Constants.PATH_MOVIE
 import bobby.irawan.movieapp.utils.Constants.PATH_MOVIE_ID
 import bobby.irawan.movieapp.utils.Constants.PATH_NOW_PLAYING
@@ -23,8 +24,8 @@ interface MoviesServiceApi {
 
     @GET(PATH_MOVIE + "{" + PATH_MOVIE_ID + "}" + PATH_REVIEW)
     suspend fun getMovieReview(
-        @Path(PATH_MOVIE_ID) movieId: String
-    ): Response<MovieResponse>
+        @Path(PATH_MOVIE_ID) movieId: Int
+    ): Response<MovieReviewResponse>
 
     @GET(PATH_MOVIE + PATH_TOP_RATED)
     suspend fun getTopRatedMovies(): Response<MovieResponse>

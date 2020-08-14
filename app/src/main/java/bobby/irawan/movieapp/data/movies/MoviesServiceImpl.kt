@@ -15,7 +15,7 @@ class MoviesServiceImpl(private val api: MoviesServiceApi) : MoviesService {
         return callApi { api.getPopularMovies() }
     }
 
-    override suspend fun getMovieReview(movieId: String): Result {
+    override suspend fun getMovieReview(movieId: Int): Result {
         return callApi { api.getMovieReview(movieId) }
     }
 

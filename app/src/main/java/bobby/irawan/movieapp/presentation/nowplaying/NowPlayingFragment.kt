@@ -28,12 +28,12 @@ class NowPlayingFragment : Fragment(), NowPlayingAdapter.ClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView()
+        setUpView()
         observeViewModel()
         viewModel.getNowPlayingMovies()
     }
 
-    private fun initView() {
+    private fun setUpView() {
         binding?.recyclerViewNowPlaying?.adapter = adapter
     }
 
@@ -41,9 +41,7 @@ class NowPlayingFragment : Fragment(), NowPlayingAdapter.ClickListener {
         viewModel.movieItems.observe(viewLifecycleOwner) { movieItems ->
             adapter.setDataMovie(movieItems)
         }
-        viewModel.snackbarMessage().observe(viewLifecycleOwner) { message ->
-            showToast(message)
-        }
+        viewModel.snackbarMessage().observe(this, ::showToast)
     }
 
     override fun onDestroyView() {

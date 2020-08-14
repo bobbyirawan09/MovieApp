@@ -26,10 +26,6 @@ val presentationModule = module {
     }
 
     viewModel {
-        DetailViewModel(get())
-    }
-
-    viewModel {
         FavoriteViewModel(get())
     }
 

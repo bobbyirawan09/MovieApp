@@ -28,12 +28,12 @@ class PopularFragment : Fragment(), PopularAdapter.ClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView()
+        setUpView()
         observeViewModel()
         viewModel.getPopularMovies()
     }
 
-    private fun initView() {
+    private fun setUpView() {
         binding?.recyclerViewPopular?.adapter = adapter
     }
 
@@ -41,9 +41,7 @@ class PopularFragment : Fragment(), PopularAdapter.ClickListener {
         viewModel.movieItems.observe(viewLifecycleOwner) { movieItems ->
             adapter.setDataMovie(movieItems)
         }
-        viewModel.snackbarMessage().observe(viewLifecycleOwner) { message ->
-            showToast(message)
-        }
+        viewModel.snackbarMessage().observe(this, ::showToast)
     }
 
     override fun onDestroyView() {

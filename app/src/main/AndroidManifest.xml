@@ -19,6 +19,7 @@
         <activity
             android:name=".presentation.detail.DetailActivity"
             android:label="@string/detail_label"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".presentation.home.HomeActivity" />
         <activity
             android:name=".presentation.home.HomeActivity"
