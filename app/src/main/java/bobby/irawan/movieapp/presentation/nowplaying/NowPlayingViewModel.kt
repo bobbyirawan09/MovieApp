@@ -2,7 +2,6 @@ package bobby.irawan.movieapp.presentation.nowplaying
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import bobby.irawan.movieapp.domain.RepositoryContract
 import bobby.irawan.movieapp.presentation.base.BaseViewModel
@@ -19,7 +18,7 @@ class NowPlayingViewModel(private val repository: RepositoryContract) : BaseView
     fun getNowPlayingMovies() {
         viewModelScope.launch {
             val result = repository.getNowPlayingMovies()
-            when(result) {
+            when (result) {
                 is Success<*> -> _movieItems.postValue(result.data as List<MovieItem>)
                 is Constants.Result.Error -> postSnackbar(result.message.orEmpty())
             }

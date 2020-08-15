@@ -11,7 +11,7 @@ import org.koin.core.context.startKoin
 /**
  * Created by bobbyirawan09 on 13/08/20.
  */
-class AppController: Application() {
+class AppController : Application() {
     init {
         instance = this
     }

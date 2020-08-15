@@ -4,8 +4,8 @@ import androidx.room.Room
 import bobby.irawan.movieapp.AppDatabase
 import bobby.irawan.movieapp.BuildConfig.BASE_URL
 import bobby.irawan.movieapp.data.interceptor.HeaderInterceptor
-import bobby.irawan.movieapp.data.movies.MoviesServiceApi
 import bobby.irawan.movieapp.data.movies.MoviesService
+import bobby.irawan.movieapp.data.movies.MoviesServiceApi
 import bobby.irawan.movieapp.data.movies.MoviesServiceImpl
 import bobby.irawan.movieapp.utils.Constants.HEADER_INTERCEPTOR
 import bobby.irawan.movieapp.utils.Constants.LOGGING_INTERCEPTOR

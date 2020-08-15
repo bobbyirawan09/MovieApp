@@ -2,7 +2,6 @@ package bobby.irawan.movieapp.presentation.popular
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import bobby.irawan.movieapp.domain.RepositoryContract
 import bobby.irawan.movieapp.presentation.base.BaseViewModel

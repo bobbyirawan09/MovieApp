@@ -10,7 +10,8 @@ import bobby.irawan.movieapp.utils.setForMovieInfo
 /**
  * Created by bobbyirawan09 on 13/08/20.
  */
-class NowPlayingAdapter(private val listener: ClickListener?): RecyclerView.Adapter<NowPlayingAdapter.ViewHolder>() {
+class NowPlayingAdapter(private val listener: ClickListener?) :
+    RecyclerView.Adapter<NowPlayingAdapter.ViewHolder>() {
 
     private var movieItems = listOf<MovieItem>()
 
@@ -31,7 +32,8 @@ class NowPlayingAdapter(private val listener: ClickListener?): RecyclerView.Adap
         holder.bind(movieItems[position])
     }
 
-    inner class ViewHolder(private val binding: ItemMovieInfoBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ItemMovieInfoBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(movieItem: MovieItem) {
             with(binding) {
                 imageViewBanner.setForMovieInfo(movieItem.posterUrl)

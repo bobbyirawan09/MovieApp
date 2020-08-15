@@ -1,6 +1,5 @@
 package bobby.irawan.movieapp.data.favorite
 
-import android.database.Cursor
 import androidx.room.*
 import bobby.irawan.movieapp.data.favorite.model.FavoriteEntity
 import bobby.irawan.movieapp.data.favorite.model.FavoriteEntity.Companion.COLUMN_MOVIE_ID

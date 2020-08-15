@@ -1,10 +1,6 @@
 package bobby.irawan.movieapp.data
 
-import bobby.irawan.movieapp.data.movies.model.MovieResponse
 import bobby.irawan.movieapp.utils.Constants.Result
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
 import retrofit2.Response
 
 /**

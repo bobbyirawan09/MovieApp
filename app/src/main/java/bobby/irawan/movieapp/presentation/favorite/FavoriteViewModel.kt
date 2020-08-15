@@ -3,8 +3,6 @@ package bobby.irawan.movieapp.presentation.favorite
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import bobby.irawan.movieapp.AppController
-import bobby.irawan.movieapp.R
 import bobby.irawan.movieapp.data.favorite.model.FavoriteEntity
 import bobby.irawan.movieapp.domain.RepositoryContract
 import bobby.irawan.movieapp.presentation.base.BaseViewModel

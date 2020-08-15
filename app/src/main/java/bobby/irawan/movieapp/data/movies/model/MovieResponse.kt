@@ -1,7 +1,5 @@
 package bobby.irawan.movieapp.data.movies.model
 
-import bobby.irawan.movieapp.presentation.model.MovieItem
-import bobby.irawan.movieapp.utils.orZero
 import com.google.gson.annotations.SerializedName
 
 /**
