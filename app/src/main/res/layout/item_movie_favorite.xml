@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    android:background="@drawable/bg_rounded_corner_white">
 
     <ImageView
         android:id="@+id/image_view_banner"
         android:layout_width="120dp"
         android:layout_height="0dp"
-        android:background="@drawable/bg_rounded_corner"
-        app:layout_constraintDimensionRatio="3:4"
         android:adjustViewBounds="true"
-        android:scaleType="fitXY"
+        android:background="@drawable/bg_rounded_corner"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_image_placeholder" />
@@ -24,41 +25,72 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:textColor="@android:color/black"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/text_view_release_date"
+        android:layout_marginEnd="8dp"
+        style="@style/Text.SubTitle.Bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/image_view_banner"
         app:layout_constraintTop_toTopOf="@+id/image_view_banner"
         tools:text="Suicide Squad" />
 
     <TextView
-        android:id="@+id/text_view_release_date"
+        android:id="@+id/text_view_release_date_label"
+        style="@style/Text.Body1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textColor="@android:color/black"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/text_view_synopsis"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/release_date_label"
         app:layout_constraintStart_toStartOf="@+id/text_view_title"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_title"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_title" />
+
+    <TextView
+        android:id="@+id/text_view_release_date"
+        style="@style/Text.Body1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="sans-serif-medium"
+        app:layout_constraintBottom_toBottomOf="@+id/text_view_release_date_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/text_view_release_date_label"
+        app:layout_constraintTop_toTopOf="@+id/text_view_release_date_label"
         tools:text="2016-08-03" />
 
     <TextView
         android:id="@+id/text_view_synopsis"
+        style="@style/Text.Body1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginVertical="8dp"
+        android:layout_marginEnd="8dp"
         android:ellipsize="end"
-        android:maxLines="4"
-        android:textColor="@android:color/black"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/image_view_banner"
+        android:maxLines="5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/text_view_title"
         app:layout_constraintTop_toBottomOf="@+id/text_view_release_date"
         tools:text="From DC Comics comes the Suicide Squad, an antihero team of incarcerated supervillains who act as deniable assets for the United States government, undertaking high-risk black ops missions in exchange for commuted prison sentences." />
+
+    <include
+        android:id="@+id/layout_vote_average"
+        layout="@layout/layout_vote_average"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/text_view_synopsis"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_synopsis" />
+
+    <TextView
+        android:id="@+id/text_view_total_votes"
+        style="@style/Text.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="(200 votes)"
+        android:textColor="@color/red_pink_color"
+        app:layout_constraintBottom_toBottomOf="@+id/layout_vote_average"
+        app:layout_constraintStart_toEndOf="@+id/layout_vote_average"
+        app:layout_constraintTop_toTopOf="@+id/layout_vote_average" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

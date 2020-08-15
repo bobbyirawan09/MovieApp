@@ -24,7 +24,11 @@ data class FavoriteEntity(
     @ColumnInfo(name = COLUMN_BACKDROP_URL)
     var backdropUrl: String = "",
     @ColumnInfo(name = COLUMN_OVERVIEW)
-    var overview: String = ""
+    var overview: String = "",
+    @ColumnInfo(name = COLUMN_VOTE_COUNT)
+    var voteCount: Int = 0,
+    @ColumnInfo(name = COLUMN_VOTE_AVERAGE)
+    var voteAverage: Double = 0.0
 ) {
     companion object {
         const val DATABASE_TABLE_NAME = "favorite"
@@ -34,6 +38,8 @@ data class FavoriteEntity(
         const val COLUMN_POSTER_URL = "poster_url"
         const val COLUMN_BACKDROP_URL = "backdrop_url"
         const val COLUMN_OVERVIEW = "overview"
+        const val COLUMN_VOTE_COUNT = "vote_count"
+        const val COLUMN_VOTE_AVERAGE = "vote_average"
 
         fun from(movieItem: MovieItem) = FavoriteEntity(
             movieItem.id,
@@ -41,7 +47,9 @@ data class FavoriteEntity(
             movieItem.releaseDate,
             movieItem.posterUrl,
             movieItem.backdropUrl,
-            movieItem.overview
+            movieItem.overview,
+            movieItem.voteCount,
+            movieItem.voteAverage
         )
     }
 }

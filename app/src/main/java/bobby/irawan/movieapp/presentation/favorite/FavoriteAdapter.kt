@@ -5,12 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import bobby.irawan.movieapp.R
 import bobby.irawan.movieapp.databinding.ItemMovieFavoriteBinding
 import bobby.irawan.movieapp.presentation.model.Favorite
 import bobby.irawan.movieapp.utils.orNoInfoString
-import bobby.irawan.movieapp.utils.setGlideAttribute
+import bobby.irawan.movieapp.utils.setForMovieFavorite
 
-class FavoriteAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class FavoriteAdapter(private val listener: ClickListener?) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val diffCallback = object : DiffUtil.ItemCallback<Favorite>() {
         override fun areItemsTheSame(oldItem: Favorite, newItem: Favorite): Boolean {
@@ -50,15 +52,23 @@ class FavoriteAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    class FavoriteViewHolder(private val binding: ItemMovieFavoriteBinding) :
+    inner class FavoriteViewHolder(private val binding: ItemMovieFavoriteBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(favorite: Favorite) {
             with(binding) {
                 textViewTitle.text = favorite.title.orNoInfoString()
-                imageViewBanner.setGlideAttribute(favorite.posterUrl)
+                imageViewBanner.setForMovieFavorite(favorite.posterUrl)
                 textViewReleaseDate.text = favorite.releaseDate.orNoInfoString()
                 textViewSynopsis.text = favorite.overview.orNoInfoString()
+                layoutVoteAverage.textViewVoteAverage.text = favorite.voteAverage.toString()
+                textViewTotalVotes.text =
+                    root.context.getString(R.string.vote_count_label, favorite.voteCount.toString())
+                root.setOnClickListener { listener?.onClickFavorite(favorite) }
             }
         }
+    }
+
+    interface ClickListener {
+        fun onClickFavorite(favorite: Favorite)
     }
 }

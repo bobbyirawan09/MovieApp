@@ -6,18 +6,19 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
-import androidx.recyclerview.widget.DividerItemDecoration
 import bobby.irawan.movieapp.databinding.ActivityFavoriteBinding
+import bobby.irawan.movieapp.presentation.detail.DetailActivity
 import bobby.irawan.movieapp.presentation.model.Favorite
+import bobby.irawan.movieapp.presentation.model.MovieItem
 import bobby.irawan.movieapp.utils.isShowEmptyInfo
 import bobby.irawan.movieapp.utils.showToast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class FavoriteActivity : AppCompatActivity() {
+class FavoriteActivity : AppCompatActivity(), FavoriteAdapter.ClickListener {
 
     private lateinit var binding: ActivityFavoriteBinding
     private val viewModel by viewModel<FavoriteViewModel>()
-    private val adapter = FavoriteAdapter()
+    private val adapter = FavoriteAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,17 +33,11 @@ class FavoriteActivity : AppCompatActivity() {
     }
 
     private fun setUpView() {
-        binding.recyclerViewFavorite.addItemDecoration(
-            DividerItemDecoration(
-                this,
-                DividerItemDecoration.VERTICAL
-            )
-        )
         binding.recyclerViewFavorite.adapter = adapter
     }
 
     private fun obsereViewModel() {
-        viewModel.favouriteResult.observe(this,::onUpdateData)
+        viewModel.favouriteResult.observe(this, ::onUpdateData)
         viewModel.snackbarMessage().observe(this, ::showToast)
     }
 
@@ -58,6 +53,10 @@ class FavoriteActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onClickFavorite(favorite: Favorite) {
+        DetailActivity.startActivity(this, MovieItem.fromFavorite(favorite))
     }
 
     companion object {

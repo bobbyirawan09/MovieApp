@@ -17,13 +17,13 @@ class RepositoryImpl(private val service: MoviesService, private val dao: Favori
     RepositoryContract {
     override suspend fun getNowPlayingMovies(): Result {
         return service.getNowPlayingMovies().mapToPresentation { data ->
-            MovieItem.from(data as MovieResponse)
+            MovieItem.fromResponse(data as MovieResponse)
         }
     }
 
     override suspend fun getPopularMovies(): Result {
         return service.getPopularMovies().mapToPresentation { data ->
-            MovieItem.from(data as MovieResponse)
+            MovieItem.fromResponse(data as MovieResponse)
         }
     }
 
@@ -38,7 +38,7 @@ class RepositoryImpl(private val service: MoviesService, private val dao: Favori
 
     override suspend fun getTopRatedMovies(): Result {
         return service.getTopRatedMovies().mapToPresentation { data ->
-            MovieItem.from(data as MovieResponse)
+            MovieItem.fromResponse(data as MovieResponse)
         }
     }
 

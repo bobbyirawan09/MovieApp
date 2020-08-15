@@ -11,7 +11,9 @@ data class Favorite(
     var releaseDate: String = "",
     var posterUrl: String = "",
     var backdropUrl: String = "",
-    var overview: String = ""
+    var overview: String = "",
+    var voteCount: Int = 0,
+    var voteAverage: Double = 0.0
 ) {
     companion object {
         fun from(favoriteEntity: FavoriteEntity) = Favorite(
@@ -20,7 +22,9 @@ data class Favorite(
             favoriteEntity.releaseDate,
             favoriteEntity.posterUrl,
             favoriteEntity.backdropUrl,
-            favoriteEntity.overview
+            favoriteEntity.overview,
+            favoriteEntity.voteCount,
+            favoriteEntity.voteAverage
         )
     }
 }

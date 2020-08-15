@@ -6,9 +6,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import bobby.irawan.movieapp.AppController
 import bobby.irawan.movieapp.R
-import com.bumptech.glide.Glide
+import coil.api.load
+import coil.transform.RoundedCornersTransformation
+import com.facebook.shimmer.ShimmerFrameLayout
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -16,12 +19,41 @@ import java.util.*
  * Created by bobbyirawan09 on 13/08/20.
  */
 
-fun ImageView.setGlideAttribute(imageUrl: String) =
-    Glide.with(this).load(imageUrl)
-        .placeholder(R.drawable.ic_image_placeholder)
-        .error(R.drawable.ic_image_broken)
-        .fallback(R.drawable.ic_image_broken)
-        .into(this)
+fun ImageView.setForMovieBanner(imageUrl: String) =
+    this.load(imageUrl) {
+        crossfade(true)
+        placeholder(R.drawable.ic_image_placeholder)
+        error(R.drawable.ic_image_broken)
+        fallback(R.drawable.ic_image_broken)
+        transformations(RoundedCornersTransformation(radius = 20f))
+    }
+
+fun ImageView.setForMovieInfo(imageUrl: String) =
+    this.load(imageUrl) {
+        crossfade(true)
+        placeholder(R.drawable.ic_image_placeholder)
+        error(R.drawable.ic_image_broken)
+        fallback(R.drawable.ic_image_broken)
+        transformations(RoundedCornersTransformation(20f, 20f, 0f, 0f))
+    }
+
+fun ImageView.setForMovieFavorite(imageUrl: String) =
+    this.load(imageUrl) {
+        crossfade(true)
+        placeholder(R.drawable.ic_image_placeholder)
+        error(R.drawable.ic_image_broken)
+        fallback(R.drawable.ic_image_broken)
+        transformations(RoundedCornersTransformation(20f, 0f, 20f, 0f))
+    }
+
+fun ImageView.loadImage(imageUrl: String) =
+    this.load(imageUrl) {
+        crossfade(true)
+        placeholder(R.drawable.ic_image_placeholder)
+        error(R.drawable.ic_image_broken)
+        fallback(R.drawable.ic_image_broken)
+        transformations(RoundedCornersTransformation(0f))
+    }
 
 fun Fragment.showToast(message: String) {
     Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
@@ -53,6 +85,15 @@ fun TextView.isShowEmptyInfo(data: List<*>?, action: () -> Unit = {}) = if (data
     action()
 } else {
     this.setGone()
+}
+
+fun RecyclerView.orGone(data: List<*>?) = if (data.isNullOrEmpty()) {
+    this.setGone()
+} else this.setVisible()
+
+fun ShimmerFrameLayout.setGoneAndStop() {
+    this.setGone()
+    this.stopShimmer()
 }
 
 fun String.asShowDate(): String {

@@ -13,17 +13,17 @@ import kotlinx.android.parcel.Parcelize
  */
 @Parcelize
 data class MovieItem(
-    val id: Int,
-    val title: String,
-    val posterUrl: String,
-    val backdropUrl: String,
-    val releaseDate: String,
-    val overview: String,
-    val voteAverage: Double,
-    val voteCount: Int
+    var id: Int,
+    var title: String,
+    var posterUrl: String,
+    var backdropUrl: String,
+    var releaseDate: String,
+    var overview: String,
+    var voteAverage: Double,
+    var voteCount: Int
 ) : Parcelable {
     companion object {
-        fun from(movieResponse: MovieResponse): List<MovieItem>? {
+        fun fromResponse(movieResponse: MovieResponse): List<MovieItem>? {
             return movieResponse.results?.map {
                 MovieItem(
                     it.id.orZero(),
@@ -37,5 +37,16 @@ data class MovieItem(
                 )
             }
         }
+
+        fun fromFavorite(favorite: Favorite) = MovieItem(
+            favorite.movieId,
+            favorite.title,
+            favorite.posterUrl,
+            favorite.backdropUrl,
+            favorite.releaseDate,
+            favorite.overview,
+            favorite.voteAverage,
+            favorite.voteCount
+        )
     }
 }

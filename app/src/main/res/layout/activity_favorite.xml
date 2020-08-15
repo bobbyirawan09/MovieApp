@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
     tools:context=".presentation.favorite.FavoriteActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -11,11 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        tools:listitem="@layout/item_movie_favorite"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <TextView
         android:id="@+id/text_view_empty_data_message"
-        style="@style/Text.SubTitle"
+        style="@style/Text.SubTitle2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/favourite_not_found"

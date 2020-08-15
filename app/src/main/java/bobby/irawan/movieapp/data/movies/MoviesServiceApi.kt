@@ -22,7 +22,7 @@ interface MoviesServiceApi {
     @GET(PATH_MOVIE + PATH_POPULAR)
     suspend fun getPopularMovies(): Response<MovieResponse>
 
-    @GET(PATH_MOVIE + "{" + PATH_MOVIE_ID + "}" + PATH_REVIEW)
+    @GET(PATH_MOVIE + "{" + PATH_MOVIE_ID + "}/" + PATH_REVIEW)
     suspend fun getMovieReview(
         @Path(PATH_MOVIE_ID) movieId: Int
     ): Response<MovieReviewResponse>

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import bobby.irawan.movieapp.databinding.ItemMovieInfoBinding
 import bobby.irawan.movieapp.presentation.model.MovieItem
-import bobby.irawan.movieapp.utils.setGlideAttribute
+import bobby.irawan.movieapp.utils.setForMovieInfo
 
 /**
  * Created by bobbyirawan09 on 13/08/20.
@@ -34,7 +34,7 @@ class NowPlayingAdapter(private val listener: ClickListener?): RecyclerView.Adap
     inner class ViewHolder(private val binding: ItemMovieInfoBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(movieItem: MovieItem) {
             with(binding) {
-                imageViewBanner.setGlideAttribute(movieItem.posterUrl)
+                imageViewBanner.setForMovieInfo(movieItem.posterUrl)
                 textViewReleaseDate.text = movieItem.releaseDate
                 textViewTitle.text = movieItem.title
                 root.setOnClickListener { listener?.onClickMovie(movieItem) }

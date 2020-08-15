@@ -7,10 +7,19 @@
     <string name="top_rated_label">Top Rated</string>
     <string name="favourite_not_found">Data movie favourite not available</string>
     <string name="no_available_information">No available information</string>
+    <string name="no_movie_information">No movie information</string>
+    <string name="no_review_information">No review information</string>
     <string name="favorite_title">Favorite</string>
     <string name="favorite_movie_label">Favorite Movie</string>
     <string name="movie_label">MOVIE</string>
     <string name="detail_label">Detail</string>
     <string name="share_label">Share</string>
     <string name="favorite_label">Favorite</string>
+    <string name="label_text_expand">[Show More]</string>
+    <string name="label_text_collapse">[Show Less]</string>
+    <string name="total_review_label">Review (%s)</string>
+    <string name="release_date_label">Release date</string>
+    <string name="vote_count_label">(%s votes)</string>
+    <string name="vote_label">%s votes</string>
+    <string name="share_message">Check out this movie called \'%1$s\'\nRating: %2$s</string>
 </resources>

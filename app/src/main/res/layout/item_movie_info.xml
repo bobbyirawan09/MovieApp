@@ -2,19 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="132dp"
-    android:layout_height="280dp"
+    android:layout_width="135dp"
+    android:layout_height="310dp"
     android:layout_margin="8dp"
     android:background="@drawable/bg_rounded_corner_white">
 
     <ImageView
         android:id="@+id/image_view_banner"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:adjustViewBounds="true"
+        android:layout_height="190dp"
         android:background="@drawable/bg_rounded_corner"
-        android:scaleType="fitXY"
-        app:layout_constraintDimensionRatio="3:4"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -27,6 +25,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:maxLines="2"
         android:textColor="@android:color/black"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,20 +36,56 @@
         tools:text="Title" />
 
     <TextView
+        android:id="@+id/text_view_release_date_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="6dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/release_date_label"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_title"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
         android:id="@+id/text_view_release_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="4dp"
+        android:layout_marginVertical="2dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:textColor="@android:color/black"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_title"
-        app:layout_constraintVertical_bias="0.0"
-        tools:text="Release date" />
+        app:layout_constraintTop_toBottomOf="@+id/text_view_release_date_label"
+        tools:text="25 August 2003" />
+
+    <TextView
+        android:id="@+id/text_view_vote_average"
+        style="@style/Text.Body1.Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:layout_marginStart="8dp"
+        android:text="7.3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_release_date"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/text_view_total_votes"
+        style="@style/Text.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="(200 votes)"
+        app:layout_constraintBottom_toBottomOf="@+id/text_view_vote_average"
+        app:layout_constraintStart_toEndOf="@+id/text_view_vote_average"
+        app:layout_constraintTop_toTopOf="@+id/text_view_vote_average" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

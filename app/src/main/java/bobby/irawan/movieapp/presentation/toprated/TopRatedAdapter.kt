@@ -1,18 +1,17 @@
 package bobby.irawan.movieapp.presentation.toprated
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import bobby.irawan.movieapp.databinding.ItemMovieFavoriteBinding
 import bobby.irawan.movieapp.databinding.ItemMovieInfoBinding
 import bobby.irawan.movieapp.presentation.model.MovieItem
-import bobby.irawan.movieapp.utils.setGlideAttribute
+import bobby.irawan.movieapp.utils.setForMovieInfo
 
 /**
  * Created by bobbyirawan09 on 13/08/20.
  */
-class TopRatedAdapter(private val listener: ClickListener?): RecyclerView.Adapter<TopRatedAdapter.ViewHolder>() {
+class TopRatedAdapter(private val listener: ClickListener?) :
+    RecyclerView.Adapter<TopRatedAdapter.ViewHolder>() {
 
     private var movieItems = listOf<MovieItem>()
 
@@ -33,10 +32,11 @@ class TopRatedAdapter(private val listener: ClickListener?): RecyclerView.Adapte
         holder.bind(movieItems[position])
     }
 
-    inner class ViewHolder(private val binding: ItemMovieInfoBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ItemMovieInfoBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(movieItem: MovieItem) {
             with(binding) {
-                imageViewBanner.setGlideAttribute(movieItem.backdropUrl)
+                imageViewBanner.setForMovieInfo(movieItem.posterUrl)
                 textViewReleaseDate.text = movieItem.releaseDate
                 textViewTitle.text = movieItem.title
                 root.setOnClickListener { listener?.onClickMovie(movieItem) }

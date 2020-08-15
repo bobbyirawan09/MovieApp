@@ -3,23 +3,19 @@ package bobby.irawan.movieapp.presentation.detail
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import bobby.irawan.movieapp.databinding.ItemMovieBannerBinding
 import bobby.irawan.movieapp.databinding.ItemMovieReviewBinding
-import bobby.irawan.movieapp.presentation.model.MovieItem
 import bobby.irawan.movieapp.presentation.model.MovieReview
-import bobby.irawan.movieapp.presentation.popular.PopularAdapter
-import bobby.irawan.movieapp.utils.setGlideAttribute
 
 /**
  * Created by bobbyirawan09 on 14/08/20.
  */
-class DetailAdapter(private val listener: ClickListener?) :
-    RecyclerView.Adapter<DetailAdapter.ViewHolder>() {
+class ReviewAdapter :
+    RecyclerView.Adapter<ReviewAdapter.ViewHolder>() {
 
-    private var movieReview = listOf<MovieItem>()
+    private var movieReviews = listOf<MovieReview>()
 
-    fun setDataMovie(movieReview: List<MovieReview>) {
-        this.movieReview = movieReview
+    fun setDataReview(movieReview: List<MovieReview>) {
+        this.movieReviews = movieReview
         notifyDataSetChanged()
     }
 
@@ -29,24 +25,19 @@ class DetailAdapter(private val listener: ClickListener?) :
         return ViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = movieItems.size
+    override fun getItemCount(): Int = movieReviews.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(movieItems[position])
+        holder.bind(movieReviews[position])
     }
 
     inner class ViewHolder(private val binding: ItemMovieReviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(movieItem: MovieItem) {
+        fun bind(movieReview: MovieReview) {
             with(binding) {
-                textViewName.setGlideAttribute(movieItem.backdropUrl)
-                textViewTitle.text = movieItem.title
-                root.setOnClickListener { listener?.onClickMovie(movieItem) }
+                textViewName.text = movieReview.author
+                textViewReview.text = movieReview.content
             }
         }
-    }
-
-    interface ClickListener {
-        fun onClickMovie(movieItem: MovieItem)
     }
 }

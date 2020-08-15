@@ -26,6 +26,7 @@ import java.util.concurrent.TimeUnit
 val dataModule = module {
     single {
         Room.databaseBuilder(androidApplication(), AppDatabase::class.java, "favorite_database")
+            .fallbackToDestructiveMigration()
             .build()
     }
 

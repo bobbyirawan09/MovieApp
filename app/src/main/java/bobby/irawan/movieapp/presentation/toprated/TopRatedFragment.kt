@@ -9,7 +9,7 @@ import androidx.lifecycle.observe
 import bobby.irawan.movieapp.databinding.FragmentTopRatedBinding
 import bobby.irawan.movieapp.presentation.detail.DetailActivity
 import bobby.irawan.movieapp.presentation.model.MovieItem
-import bobby.irawan.movieapp.utils.showToast
+import bobby.irawan.movieapp.utils.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TopRatedFragment : Fragment(), TopRatedAdapter.ClickListener {
@@ -38,10 +38,21 @@ class TopRatedFragment : Fragment(), TopRatedAdapter.ClickListener {
     }
 
     private fun observeViewModel() {
-        viewModel.movieItems.observe(viewLifecycleOwner) { movieItems ->
-            adapter.setDataMovie(movieItems)
-        }
-        viewModel.snackbarMessage().observe(this, ::showToast)
+        viewModel.movieItems.observe(viewLifecycleOwner, ::onSuccessState)
+        viewModel.snackbarMessage().observe(this, ::onFailedState)
+    }
+
+    private fun onSuccessState(movieItems: List<MovieItem>) {
+        adapter.setDataMovie(movieItems)
+        binding?.shimmer?.setGoneAndStop()
+        binding?.recyclerViewTopRated?.orGone(movieItems)
+        binding?.textViewEmptyDataMessage?.isShowEmptyInfo(movieItems)
+    }
+
+    private fun onFailedState(message: String) {
+        showToast(message)
+        binding?.shimmer?.setGoneAndStop()
+        binding?.textViewEmptyDataMessage?.setVisible()
     }
 
     override fun onDestroyView() {

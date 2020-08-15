@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import bobby.irawan.movieapp.databinding.ItemMovieBannerBinding
 import bobby.irawan.movieapp.presentation.model.MovieItem
-import bobby.irawan.movieapp.utils.setGlideAttribute
+import bobby.irawan.movieapp.utils.setForMovieBanner
 
 /**
  * Created by bobbyirawan09 on 13/08/20.
@@ -36,8 +36,9 @@ class PopularAdapter(private val listener: ClickListener?) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(movieItem: MovieItem) {
             with(binding) {
-                imageViewBanner.setGlideAttribute(movieItem.backdropUrl)
+                imageViewBanner.setForMovieBanner(movieItem.backdropUrl)
                 textViewTitle.text = movieItem.title
+                layoutVoteAverage.textViewVoteAverage.text = movieItem.voteAverage.toString()
                 root.setOnClickListener { listener?.onClickMovie(movieItem) }
             }
         }

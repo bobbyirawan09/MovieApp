@@ -9,7 +9,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".presentation.home.HomeActivity">
+        tools:context=".presentation.home.HomeActivity"
+        android:background="@color/backgroundColor">
 
         <FrameLayout
             android:id="@+id/frame_layout_popular"
