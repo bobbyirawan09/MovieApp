@@ -88,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:text="(200 votes)"
-        android:textColor="@color/red_pink_color"
+        android:textColor="@color/pinkColor"
         app:layout_constraintBottom_toBottomOf="@+id/layout_vote_average"
         app:layout_constraintStart_toEndOf="@+id/layout_vote_average"
         app:layout_constraintTop_toTopOf="@+id/layout_vote_average" />

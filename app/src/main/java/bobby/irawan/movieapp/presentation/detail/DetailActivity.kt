@@ -56,6 +56,9 @@ class DetailActivity : AppCompatActivity() {
                 else -> false
             }
         }
+        binding.textViewSeeAllLabel.setOnClickListener {
+            showToast(applicationContext.getString(R.string.coming_soon_feature))
+        }
     }
 
     private fun onShareMovie() {
@@ -113,8 +116,8 @@ class DetailActivity : AppCompatActivity() {
             textViewDescription.apply {
                 addShowMoreText(getString(R.string.label_text_expand))
                 addShowLessText(getString(R.string.label_text_collapse))
-                setShowMoreColor(ContextCompat.getColor(root.context, R.color.red_pink_color))
-                setShowLessTextColor(ContextCompat.getColor(root.context, R.color.red_pink_color))
+                setShowMoreColor(ContextCompat.getColor(root.context, R.color.pinkColor))
+                setShowLessTextColor(ContextCompat.getColor(root.context, R.color.pinkColor))
                 setShowingLine(7)
             }
             imageViewPoster.setForMovieBanner(movieItem.posterUrl)

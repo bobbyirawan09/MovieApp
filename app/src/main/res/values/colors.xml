@@ -6,6 +6,6 @@
     <color name="blackTransparent">#ca000000</color>
     <color name="blackToolbarTransparent">#80000000</color>
     <color name="backgroundColor">#F5F5FA</color>
-    <color name="red_pink_color">#E81667</color>
+    <color name="pinkColor">#E81667</color>
     <color name="colorGold">#c28800</color>
 </resources>

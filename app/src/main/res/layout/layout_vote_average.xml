@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/red_pink_color">
+        android:background="@color/pinkColor">
 
         <TextView
             android:id="@+id/text_view_vote_average"

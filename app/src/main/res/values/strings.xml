@@ -22,4 +22,6 @@
     <string name="vote_count_label">(%s votes)</string>
     <string name="vote_label">%s votes</string>
     <string name="share_message">Check out this movie called \'%1$s\'\nRating: %2$s</string>
+    <string name="see_all_review_label">See all review &gt;</string>
+    <string name="coming_soon_feature">Feature is under development</string>
 </resources>
