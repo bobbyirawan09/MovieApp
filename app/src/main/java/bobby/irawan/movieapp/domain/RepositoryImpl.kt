@@ -42,7 +42,7 @@ class RepositoryImpl(private val service: MoviesService, private val dao: Favori
         }
     }
 
-    override suspend fun getFavorites() = handleFlowData {
+    override fun getFavorites() = handleFlowData {
         dao.getFavorites()
     }
 

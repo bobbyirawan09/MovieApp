@@ -6,27 +6,24 @@ import bobby.irawan.movieapp.data.movies.MoviesService
 import bobby.irawan.movieapp.domain.RepositoryContract
 import bobby.irawan.movieapp.domain.RepositoryImpl
 import bobby.irawan.movieapp.helper.BaseTest
-import bobby.irawan.movieapp.helper.MockData
-import bobby.irawan.movieapp.helper.MockData.favoriteEntities
 import bobby.irawan.movieapp.helper.MockData.favoriteEntity
 import bobby.irawan.movieapp.helper.MockData.flowFavoriteEmptyEntity
-import bobby.irawan.movieapp.helper.MockData.flowFavoriteEmptyEntityResult
 import bobby.irawan.movieapp.helper.MockData.flowFavoriteEntities
-import bobby.irawan.movieapp.helper.MockData.flowFavoriteEntitiesResult
+import bobby.irawan.movieapp.helper.MockData.succesFavoriteEmptyEntitiesResult
+import bobby.irawan.movieapp.helper.MockData.succesFavoriteEntitiesResult
 import bobby.irawan.movieapp.helper.MockData.succesFavoriteResult
 import bobby.irawan.movieapp.helper.MockData.succesMovieResponseResult
 import bobby.irawan.movieapp.helper.MockData.succesMoviesResult
 import bobby.irawan.movieapp.helper.MockData.succesReviewResponse
 import bobby.irawan.movieapp.helper.MockData.succesReviewsResult
 import bobby.irawan.movieapp.presentation.model.Favorite
-import bobby.irawan.movieapp.utils.Constants
 import bobby.irawan.movieapp.utils.Constants.Result.Success
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert
 import org.junit.Test
@@ -134,31 +131,33 @@ class RepositoryContractTest : BaseTest() {
     }
 
     @Test
-    fun givenSuccessResponse_whenGetFavoriteMovie_shouldReturnSuccessResult() {
+    fun givenSuccessResponse_whenGetFavoriteMovie_shouldReturnSuccessResult() = runBlockingTest {
         // Given
-        val response = flowOf(favoriteEntities)
-        every { mockDao.getFavorites() } returns response
+        every { mockDao.getFavorites() } returns flowFavoriteEntities
 
-        runBlockingTest {
-            // When
-            val result = repository.getFavorites()
-            // Then
-            Assert.assertEquals(flowOf(Success(favoriteEntities)), result)
+        // When
+        val flow = repository.getFavorites()
+
+        // Then
+        flow.collect {
+            Assert.assertEquals(it, succesFavoriteEntitiesResult)
         }
     }
 
     @Test
-    fun givenZeroResponse_whenGetFavoriteMovie_shouldReturnSuccessResultWithNoData() {
-        // Given
-        every { mockDao.getFavorites() } returns flowFavoriteEmptyEntity
-
+    fun givenZeroResponse_whenGetFavoriteMovie_shouldReturnSuccessResultWithNoData() =
         runBlockingTest {
+            // Given
+            every { mockDao.getFavorites() } returns flowFavoriteEmptyEntity
+
             // When
-            val result = repository.getFavorites()
+            val flow = repository.getFavorites()
+
             // Then
-            Assert.assertEquals(flowFavoriteEmptyEntityResult, result)
+            flow.collect {
+                Assert.assertEquals(it, succesFavoriteEmptyEntitiesResult)
+            }
         }
-    }
 
     @Test
     fun givenFavoriteData_whenAddFavoriteMovie_shouldReturnNothing() {

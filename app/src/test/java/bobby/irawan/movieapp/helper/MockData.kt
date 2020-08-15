@@ -8,13 +8,10 @@ import bobby.irawan.movieapp.data.movies.model.MovieReviewResultResponse
 import bobby.irawan.movieapp.presentation.model.Favorite
 import bobby.irawan.movieapp.presentation.model.MovieItem
 import bobby.irawan.movieapp.presentation.model.MovieReview
-import bobby.irawan.movieapp.utils.Constants
 import bobby.irawan.movieapp.utils.Constants.Result.Error
 import bobby.irawan.movieapp.utils.Constants.Result.Success
 import kotlinx.coroutines.flow.flowOf
-import okhttp3.ResponseBody.Companion.toResponseBody
 import org.mockito.ArgumentMatchers.anyString
-import retrofit2.Response
 
 /**
  * Created by bobbyirawan09 on 15/08/20.
@@ -43,14 +40,7 @@ object MockData {
         1,
         10
     )
-    val emptyMovieListResponse = MovieResponse(
-        null, 0, 0, emptyList(), 0, 0
-    )
-    val movieSuccessResponse = Response.success(movieResponse)
-    val errorMovieListResponse = Response.error<MovieResponse>(400, "".toResponseBody())
-
     val succesMovieResponseResult = Success(movieResponse)
-    val succesMovieResult = Success(movieItem)
     val succesMoviesResult = Success(movieItems)
     val succesMovieEmptyResult = Success(emptyList<MovieItem>())
     val errorResult = Error(anyString())
@@ -65,7 +55,6 @@ object MockData {
     val emptyReviewResponse = MovieReviewResponse(
         0, 1, emptyList(), 0, 0
     )
-    val succesEmptyReviewResponse = Success(emptyReviewResponse)
     val succesReviewResponse = Success(movieReviewResponses)
 
     val movieReview = MovieReview(
@@ -77,7 +66,6 @@ object MockData {
     val movieReviews =
         (0 until 10).map { movieReview.copy(id = "1") }
     val succesEmptyReviewResult = Success<List<MovieReview>>(emptyList())
-    val succesReviewResult = Success(movieReview)
     val succesReviewsResult = Success(movieReviews)
 
 
@@ -106,18 +94,15 @@ object MockData {
 
     val favoriteEntities = listOf(favoriteEntity)
 
-    val flowFavoriteMovies = flowOf(favoriteMovies)
-    val flowFavoriteEntities = flowOf(favoriteEntities)
     val flowFavoriteEntitiesResult = flowOf(Success(favoriteEntities))
-
+    val flowFavoriteEntities = flowOf(favoriteEntities)
     val flowFavoriteEmptyResult = flowOf(Success<List<Favorite>>(emptyList()))
     val flowFavoriteEmptyEntityResult = flowOf(Success(emptyList<FavoriteEntity>()))
     val flowFavoriteEmptyEntity = flowOf<List<FavoriteEntity>>(emptyList())
-    val flowFavoriteResult = flowOf(Success(favoriteMovies))
 
-    val succesEmptyFavoriteResult = Success<List<Favorite>>(emptyList())
-    val succesFavoritesResult = Success(favoriteMovies)
     val succesFavoriteResult = Success(favorite)
+    val succesFavoriteEntitiesResult = Success(favoriteEntities)
+    val succesFavoriteEmptyEntitiesResult = Success(emptyList<FavoriteEntity>())
 
     fun <T> T.times(times: Int): List<T> {
         return (0 until times).map { this }

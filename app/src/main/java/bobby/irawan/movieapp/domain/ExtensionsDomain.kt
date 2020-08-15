@@ -35,7 +35,7 @@ suspend fun <T> callLocalData(action: suspend () -> T): Result =
         Error(message = e.localizedMessage)
     }
 
-suspend fun <T> handleFlowData(action: suspend () -> Flow<T>) = flow {
+fun <T> handleFlowData(action: () -> Flow<T>) = flow {
     try {
         action.invoke().collect { result ->
             emit(Success(result))
