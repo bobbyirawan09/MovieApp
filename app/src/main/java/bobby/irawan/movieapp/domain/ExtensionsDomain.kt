@@ -46,7 +46,7 @@ fun <T> handleFlowData(action: () -> Flow<T>) = flow {
 }
 
 fun String.asPosterUrl() =
-    if (this.isEmpty()) DEFAULT_POSTER_URL else BASE_IMG_URL + "original" + this
+    if (this.isEmpty()) DEFAULT_POSTER_URL else BASE_IMG_URL + "w342" + this
 
 fun String.asBackdropUrl() =
     if (this.isEmpty()) DEFAULT_BACKDROP_URL else BASE_IMG_URL + "w780" + this
