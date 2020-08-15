@@ -22,8 +22,8 @@ class FavoriteViewModel(
     private val repository: RepositoryContract
 ) : BaseViewModel() {
 
-    private var _favouriteResult = MutableLiveData<List<Favorite>>()
-    val favouriteResult = _favouriteResult as LiveData<List<Favorite>>
+    private var _favoriteResult = MutableLiveData<List<Favorite>>()
+    val favoriteResult = _favoriteResult as LiveData<List<Favorite>>
 
     fun getAllFavourite() {
         viewModelScope.launch {
@@ -38,22 +38,11 @@ class FavoriteViewModel(
                             val presentationData = data.map { favoriteEntities ->
                                 Favorite.from(favoriteEntities)
                             }
-                            _favouriteResult.postValue(presentationData)
+                            _favoriteResult.postValue(presentationData)
                         }
                         is Error -> postSnackbar(result.message.orEmpty())
                     }
                 }
         }
     }
-
-//    fun deleteFavourite() {
-//        viewModelScope.launch {
-//            val effectedRow = repository.deleteFavorite(username)
-//            if (effectedRow > 0) {
-//                _successMessage.postValue(
-//                    AppController.getInstance().getString(R.string.success_delete_data)
-//                )
-//            }
-//        }
-//    }
 }

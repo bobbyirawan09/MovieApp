@@ -37,7 +37,7 @@ class FavoriteActivity : AppCompatActivity(), FavoriteAdapter.ClickListener {
     }
 
     private fun obsereViewModel() {
-        viewModel.favouriteResult.observe(this, ::onUpdateData)
+        viewModel.favoriteResult.observe(this, ::onUpdateData)
         viewModel.snackbarMessage().observe(this, ::showToast)
     }
 

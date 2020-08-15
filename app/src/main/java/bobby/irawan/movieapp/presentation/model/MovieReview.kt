@@ -16,10 +16,10 @@ data class MovieReview(
 ) : Parcelable {
     companion object {
         fun from(response: MovieReviewResultResponse) = MovieReview(
-            response.id,
-            response.author,
-            response.content,
-            response.url
+            response.id.orEmpty(),
+            response.author.orEmpty(),
+            response.content.orEmpty(),
+            response.url.orEmpty()
         )
     }
 }

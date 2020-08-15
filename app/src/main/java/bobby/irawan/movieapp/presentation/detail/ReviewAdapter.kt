@@ -25,7 +25,13 @@ class ReviewAdapter :
         return ViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = movieReviews.size
+    override fun getItemCount(): Int {
+        return if (movieReviews.size <= 10) {
+            movieReviews.size
+        } else {
+            10
+        }
+    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(movieReviews[position])

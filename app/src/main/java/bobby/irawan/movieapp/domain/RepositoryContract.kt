@@ -1,7 +1,6 @@
 package bobby.irawan.movieapp.domain
 
 import bobby.irawan.movieapp.data.favorite.model.FavoriteEntity
-import bobby.irawan.movieapp.presentation.model.Favorite
 import bobby.irawan.movieapp.utils.Constants.Result
 import kotlinx.coroutines.flow.Flow
 

@@ -9,6 +9,7 @@ buildscript {
         retrofit_version = '2.9.0'
         room_version = '2.2.5'
         show_more_text_version = '1.0.2'
+        material_version = '1.2.0'
     }
     repositories {
         google()
